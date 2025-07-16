@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><%= product.name %> — Veterinaria Mi Gato Feliz</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header id="header">
+    <h1><a href="/">← Volver</a> | <%= product.name %></h1>
+    <a href="/cart">🛒 <span id="cartCount">0</span></a>
+  </header>
+
+  <main class="detail-container">
+    <img src="<%= product.image_url %>" alt="<%= product.name %>">
+    <div class="detail-info">
+      <p><%= product.description %></p>
+      <p class="price">Precio: $<%= product.price.toFixed(2) %> MXN</p>
+      <button id="addCart" data-id="<%= product.id %>">Añadir al carrito</button>
+    </div>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
