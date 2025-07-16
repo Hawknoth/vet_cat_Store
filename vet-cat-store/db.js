@@ -10,8 +10,6 @@ db.serialize(() => {
       description TEXT,
       price REAL,
       image_url TEXT,
-      manual_url TEXT,
-      video_url TEXT,
       category TEXT
     )
   `);
@@ -20,93 +18,41 @@ db.serialize(() => {
     if (err) return console.error(err);
     if (row.cnt === 0) {
       const stmt = db.prepare(`
-        INSERT INTO products
-          (name, description, price, image_url, manual_url, video_url, category)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO products (name, description, price, image_url, category)
+        VALUES (?, ?, ?, ?, ?)
       `);
 
       const sample = [
-        {
-          name: "Arena Premium Lavanda",
-          description: "10 L, aglomerante con aroma a lavanda.",
-          price: 220.5,
-          image_url: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Higiene"
-        },
-        {
-          name: "Comida Húmeda Gato Pescado",
-          description: "Pack 12x85 g sabor atún y salmón.",
-          price: 180.75,
-          image_url: "https://images.unsplash.com/photo-1592195168093-1b2a18bc1bd6",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Alimentos"
-        },
-        {
-          name: "Rascador XXL",
-          description: "Ecológico, 70 cm de altura, base ancha.",
-          price: 850.0,
-          image_url: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Juguetes"
-        },
-        {
-          name: "Cepillo Desenredante",
-          description: "Cerdas suaves, ideal para pelo largo.",
-          price: 120.0,
-          image_url: "https://images.unsplash.com/photo-1573569745638-209313f159ac",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Higiene"
-        },
-        {
-          name: "Collar con Campana",
-          description: "Adjustable, colores surtidos.",
-          price: 95.0,
-          image_url: "https://images.unsplash.com/photo-1556228724-4fa9bcfda5db",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Accesorios"
-        },
-        {
-          name: "Juguete Ratón Relleno",
-          description: "Relleno con catnip, movimiento vibratorio.",
-          price: 75.0,
-          image_url: "https://images.unsplash.com/photo-1592194996312-d2d8b6c42f23",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Juguetes"
-        },
-        {
-          name: "Fuente de Agua Automática",
-          description: "Cap. 2 L, filtro carbón activado.",
-          price: 650.0,
-          image_url: "https://images.unsplash.com/photo-1573497160607-1ee88b3f0f28",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Accesorios"
-        },
-        {
-          name: "Cama Sofá para Gato",
-          description: "Tamaño mediano, felpa extra suave.",
-          price: 430.0,
-          image_url: "https://images.unsplash.com/photo-1563213126-65fd4b4f8c71",
-          manual_url: "https://drive.google.com/…",
-          video_url: "https://youtu.be/…",
-          category: "Muebles"
-        }
+        ["Arena Premium Lavanda",       "10 L, aglomerante con aroma a lavanda.", 220.5,  "https://placekitten.com/300/200", "Arena"],
+        ["Arena Aglomerante Clásica",   "8 L, sin perfume, alta absorción.",       180.0,  "https://placekitten.com/301/200", "Arena"],
+        ["Arenero Cubierto",            "Con tapa abatible y filtro de carbón.",  450.0,  "https://placekitten.com/302/200", "Areneros"],
+        ["Arenero Abierto Grande",      "Superficie extra ancha.",                300.0,  "https://placekitten.com/303/200", "Areneros"],
+        ["Collar Reflectante",          "Ajustable, LED incorporado.",            120.0,  "https://placekitten.com/304/200", "Collares"],
+        ["Collar con Campana",          "Campana suave para no asustar al gato.", 95.0,   "https://placekitten.com/305/200", "Collares"],
+        ["Jaula de Transporte",         "Estructura resistente y plegable.",      650.0,  "https://placekitten.com/306/200", "Jaulas"],
+        ["Jaula de Dos Niveles",        "Con plataforma y escalera interior.",    1200.0, "https://placekitten.com/307/200", "Jaulas"],
+        ["Rascador XXL",                "70 cm de altura, poste forrado en sisal.",850.0, "https://placekitten.com/308/200", "Juguetes"],
+        ["Juguete Ratón Relleno",       "Catnip natural y cuerda vibratoria.",     75.0,  "https://placekitten.com/309/200", "Juguetes"],
+        ["Juguete Láser Interactivo",   "Patrón automático de luces.",             150.0, "https://placekitten.com/310/200", "Juguetes"],
+        ["Rueda de Ejercicio",          "Perfecta para gatos en interiores.",      400.0, "https://placekitten.com/311/200", "Juguetes"],
+        ["Comida Húmeda Gato Pescado",  "Pack 12x85 g sabor atún y salmón.",       180.75,"https://placekitten.com/312/200", "Alimentos"],
+        ["Comida Seca Gato Adulto",     "5 kg, receta premium con pollo.",         520.0, "https://placekitten.com/313/200", "Alimentos"],
+        ["Fuente de Agua Automática",   "Capacidad 2 L, filtro de carbón.",       650.0, "https://placekitten.com/314/200", "Accesorios"],
+        ["Bolso de Transporte",         "Ventilación 360°, cierre de seguridad.",  550.0, "https://placekitten.com/315/200", "Accesorios"],
+        ["Cama Sofá para Gato",         "Felpa extra suave, desmontable.",         430.0, "https://placekitten.com/316/200", "Muebles"],
+        ["Cepillo Desenredante",        "Cerdas suaves para pelo largo.",          120.0, "https://placekitten.com/317/200", "Higiene"],
+        ["Shampoo Seco Gato",           "Sin enjuague, aroma a lavanda.",         200.0, "https://placekitten.com/318/200", "Higiene"],
+        ["Transportadora Plegable",     "Fácil apertura y cerradura de seguridad.",780.0, "https://placekitten.com/319/200", "Jaulas"]
       ];
 
-      sample.forEach(p =>
-        stmt.run(p.name, p.description, p.price, p.image_url, p.manual_url, p.video_url, p.category)
-      );
+      sample.forEach(p => stmt.run(...p));
       stmt.finalize();
     }
   });
 });
+
+module.exports = db;
+
 
 module.exports = db;
 
