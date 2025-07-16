@@ -25,7 +25,7 @@ db.serialize(() => {
     // db.js
 // Ejemplo de líneas de db.js usando Unsplash Source
 const sample = [
-  ["Arena Premium Lavanda",       "10 L, aglomerante con aroma a lavanda.", 220.5,  "https://source.unsplash.com/300x200/?cat+litter",    "Arena"],
+  ["Arena Premium Lavanda",       "10 L, aglomerante con aroma a lavanda.", 220.5,  "https://media.istockphoto.com/id/1315441226/es/foto/regalo-de-coraz%C3%B3n-de-san-valent%C3%ADn-de-gato-bengal%C3%AD-el-gato-expresa-su-amor.webp?a=1&b=1&s=612x612&w=0&k=20&c=_A4Z54EsHVAcPRyFtUdsmHRmFxcZxL-AbkBee5i4Aos=",    "Arena"],
   ["Arena Aglomerante Clásica",   "8 L, sin perfume, alta absorción.",       180.0,  "https://source.unsplash.com/300x200/?litter+box",     "Arena"],
   ["Arenero Cubierto",            "Con tapa abatible y filtro de carbón.",  450.0,  "https://source.unsplash.com/300x200/?covered+litter",  "Areneros"],
   ["Arenero Abierto Grande",      "Superficie extra ancha.",                300.0,  "https://source.unsplash.com/300x200/?open+litter",     "Areneros"],
