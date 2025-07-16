@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Veterinaria Mi Gato Feliz</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -12,10 +16,36 @@
     <a href="/cart">🛒 <span id="cartCount">0</span></a>
   </header>
 
+  <!-- Video introductorio -->
+  <section class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/VIDEO_ID"
+      title="Cuidados de tu gato"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </section>
+
+  <!-- Barra de categorías -->
+  <nav class="categories">
+    <button class="category-btn active" data-cat="All">Todos</button>
+    <button class="category-btn" data-cat="Arena">Arena</button>
+    <button class="category-btn" data-cat="Areneros">Areneros</button>
+    <button class="category-btn" data-cat="Collares">Collares</button>
+    <button class="category-btn" data-cat="Jaulas">Jaulas</button>
+    <button class="category-btn" data-cat="Juguetes">Juguetes</button>
+    <button class="category-btn" data-cat="Alimentos">Alimentos</button>
+    <button class="category-btn" data-cat="Accesorios">Accesorios</button>
+    <button class="category-btn" data-cat="Muebles">Muebles</button>
+    <button class="category-btn" data-cat="Higiene">Higiene</button>
+  </nav>
+
+  <!-- Buscador -->
   <div class="search-bar">
     <input type="text" id="search" placeholder="Buscar producto…">
   </div>
 
+  <!-- Productos -->
   <main id="products" class="products-container">
     <% products.forEach(p => { %>
       <div
