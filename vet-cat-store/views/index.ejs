@@ -7,21 +7,28 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
+  <header id="header">
     <h1>Veterinaria Mi Gato Feliz</h1>
+    <a href="/cart">🛒 <span id="cartCount">0</span></a>
   </header>
 
-  <main class="products-container">
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Buscar producto…">
+  </div>
+
+  <main id="products" class="products-container">
     <% products.forEach(p => { %>
-      <div class="product-card">
-        <img src="<%= p.image_url %>" alt="<%= p.name %>">
+      <div
+        class="product-card"
+        data-name="<%= p.name.toLowerCase() %>"
+        data-category="<%= p.category %>"
+      >
+        <a href="/product/<%= p.id %>">
+          <img src="<%= p.image_url %>" alt="<%= p.name %>">
+        </a>
         <h2><%= p.name %></h2>
-        <p><%= p.description %></p>
         <p class="price">$<%= p.price.toFixed(2) %> MXN</p>
-        <div class="links">
-          <a href="<%= p.manual_url %>" target="_blank">Manual (PDF)</a>
-          <a href="<%= p.video_url %>" target="_blank">Ver video</a>
-        </div>
+        <button class="add-cart" data-id="<%= p.id %>">Añadir al carrito</button>
       </div>
     <% }) %>
   </main>
@@ -29,10 +36,11 @@
   <footer>
     <p>
       Brochure general:
-      <a href="https://drive.google.com/file/d/EXAMPLE_GENERAL/view?usp=sharing" target="_blank">
-        https://drive.google.com/...
-      </a>
+      <a href="https://drive.google.com/…" target="_blank">https://drive.google.com/…</a>
     </p>
   </footer>
+
+  <script src="/js/app.js"></script>
 </body>
 </html>
+
