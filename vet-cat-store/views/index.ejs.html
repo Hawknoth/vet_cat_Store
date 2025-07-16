@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Veterinaria Mi Gato Feliz</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Veterinaria Mi Gato Feliz</h1>
+  </header>
+
+  <main class="products-container">
+    <% products.forEach(p => { %>
+      <div class="product-card">
+        <img src="<%= p.image_url %>" alt="<%= p.name %>">
+        <h2><%= p.name %></h2>
+        <p><%= p.description %></p>
+        <p class="price">$<%= p.price.toFixed(2) %> MXN</p>
+        <div class="links">
+          <a href="<%= p.manual_url %>" target="_blank">Manual (PDF)</a>
+          <a href="<%= p.video_url %>" target="_blank">Ver video</a>
+        </div>
+      </div>
+    <% }) %>
+  </main>
+
+  <footer>
+    <p>
+      Brochure general:
+      <a href="https://drive.google.com/file/d/EXAMPLE_GENERAL/view?usp=sharing" target="_blank">
+        https://drive.google.com/...
+      </a>
+    </p>
+  </footer>
+</body>
+</html>
